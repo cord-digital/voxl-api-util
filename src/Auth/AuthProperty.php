@@ -49,7 +49,7 @@ class AuthProperty
         }
         $user->properties;
         foreach ($user->properties as $x => $p) {
-            $p->management = ($p->id == 2);
+            $p->management = ($p->id == -1);
             $user->properties[$x] = $p;
 
         }
