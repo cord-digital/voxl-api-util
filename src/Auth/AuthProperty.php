@@ -14,7 +14,9 @@ class AuthProperty
 
     public function __construct()
     {
-        self::$instance = $this;
+        if (!self::$instance) {
+            self::$instance = $this;
+        }
     }
 
     public function get_property(): WebProperty | null {
