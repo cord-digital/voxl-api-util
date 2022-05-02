@@ -41,12 +41,12 @@ class AuthProperty
 
     public static function user_profile() {
         $user = auth()->user();
-        if (AuthProperty::property()) {
-            $property = AuthProperty::property();
+        if (self::property()) {
+            $property = self::property();
             $user->channel_groupings = AnalyticsUtil::get_channel_groupings($property, true);
             $user->settings = $property->settings;
             $user->channels = ["enabled_channels" => $property->channels, "available_channels" => Channel::whereDoesntHave('properties', function($query) {
-                $query->whereIn('web_properties.id', [AuthProperty::property()->id]);
+                $query->whereIn('web_properties.id', [self::property()->id]);
             })->get()];
         }
         $user->properties;
