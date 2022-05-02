@@ -26,6 +26,7 @@ class AuthProperty
     public function set_property(WebProperty $property) {
         $this->property = $property;
         $this->property_id = $property->id;
+        self::$instance = $this;
     }
 
     public static function property(): WebProperty|null {
