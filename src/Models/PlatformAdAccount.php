@@ -31,4 +31,12 @@ class PlatformAdAccount extends Model
         return $this->belongsTo(PlatformCredentials::class, "credential_id", "id");
     }
 
+    /**
+     * The objects associated with this ad account
+     */
+    public function ad_objects()
+    {
+        return $this->hasMany(PlatformAdObject::class, "ad_account", "id");
+    }
+
 }
