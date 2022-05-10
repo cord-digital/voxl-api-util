@@ -26,7 +26,7 @@ class AuthProperty
         return $this->property;
     }
 
-    public function set_property(WebProperty $property, User $state_user = null) {
+    public function set_property(WebProperty $property, array $state_user = null) {
         $this->property = $property;
         $this->property_id = $property->id;
         $this->state_user = $state_user;
