@@ -2,6 +2,7 @@
 
 namespace Voxl\Util\Models;
 
+use App\WebPropertyRemap;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,6 +39,14 @@ class WebProperty extends Model
     public function channels()
     {
         return $this->hasMany(WebPropertyChannel::class, "property_id")->with("channel")->orderBy("order", "ASC");
+    }
+
+    /**
+     * The remaps the property has.
+     */
+    public function remaps()
+    {
+        return $this->hasMany(WebPropertyRemap::class, "property_id");
     }
 
 }
