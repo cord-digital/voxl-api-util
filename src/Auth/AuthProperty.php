@@ -4,11 +4,14 @@ namespace Voxl\Util\Auth;
 
 use Voxl\Util\Analytics\AnalyticsUtil;
 use Voxl\Util\Models\Channel;
+use Voxl\Util\Models\User;
 use Voxl\Util\Models\WebProperty;
 
 class AuthProperty
 {
     protected $property, $property_id;
+
+    protected $state_user;
 
     private static $instance;
 
@@ -23,10 +26,15 @@ class AuthProperty
         return $this->property;
     }
 
-    public function set_property(WebProperty $property) {
+    public function set_property(WebProperty $property, User $state_user = null) {
         $this->property = $property;
         $this->property_id = $property->id;
+        $this->state_user = $state_user;
         self::$instance = $this;
+    }
+
+    public static function state_user(): User|null {
+        return self::$instance->state_user();
     }
 
     public static function property(): WebProperty|null {
