@@ -9,7 +9,13 @@ class DomainWhitelist extends Model
 {
     use HasFactory;
 
-    public function property() {
+    protected $fillable = [
+        "property_id",
+        "domain"
+    ];
+
+    public function property()
+    {
         return $this->belongsTo(WebProperty::class, "property_id");
     }
 
