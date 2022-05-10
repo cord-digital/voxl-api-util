@@ -17,6 +17,11 @@ class WebPropertyRemap extends Model
         "overrides"
     ];
 
+    protected $casts = [
+        "conditions" => "array",
+        "overrides" => "array"
+    ];
+
     /**
      * The property this remap is for
      */
