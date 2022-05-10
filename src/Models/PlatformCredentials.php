@@ -41,7 +41,7 @@ class PlatformCredentials extends Model
     }
 
     /**
-     * The channel this credential is for
+     * The property this credential is for
      */
     public function property()
     {
