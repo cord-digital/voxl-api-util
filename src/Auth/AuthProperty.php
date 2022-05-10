@@ -33,7 +33,7 @@ class AuthProperty
         self::$instance = $this;
     }
 
-    public static function state_user(): User|null {
+    public static function state_user(): array|null {
         return self::$instance->state_user();
     }
 
