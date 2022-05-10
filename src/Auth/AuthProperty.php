@@ -34,7 +34,7 @@ class AuthProperty
     }
 
     public static function state_user(): array|null {
-        return self::$instance->state_user();
+        return self::$instance->state_user;
     }
 
     public static function property(): WebProperty|null {
