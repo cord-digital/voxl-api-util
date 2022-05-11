@@ -48,4 +48,12 @@ class WebProperty extends Model
         return $this->hasMany(WebPropertyRemap::class, "property_id");
     }
 
+    /**
+     * The invites the property has.
+     */
+    public function invites()
+    {
+        return $this->hasMany(WebPropertyInvite::class, "property_id")->where("accepted", false);
+    }
+
 }
