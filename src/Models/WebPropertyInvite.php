@@ -12,6 +12,7 @@ class WebPropertyInvite extends Model
     protected $fillable = [
         "property_id",
         "email",
+        "role",
         "accepted"
     ];
 
