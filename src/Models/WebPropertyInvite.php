@@ -13,6 +13,7 @@ class WebPropertyInvite extends Model
         "property_id",
         "email",
         "role",
+        "user_id",
         "accepted",
         "last_sent_at"
     ];
