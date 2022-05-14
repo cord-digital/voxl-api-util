@@ -56,4 +56,37 @@ class WebProperty extends Model
         return $this->hasMany(WebPropertyInvite::class, "property_id")->where("accepted", false);
     }
 
+    public static function create_property($domain, User $user)
+    {
+        $prop = WebProperty::create([
+            'domain' => $domain,
+            'settings' => ["reporting_timezone" => "-7"],
+            'channel_groupings' => ["ordering" => []],
+        ]);
+
+        WebPropertyChannel::create([
+            "property_id" => $prop->id,
+            "name_override" => "Other",
+            "key_override" => "default",
+            "order" => 0,
+            "channel_groupings" => json_decode(
+                '{"definition": [], "subgroupings": [{"key": "source", "display": "Source", "definition": "utm_source"}, {"key": "medium", "display": "Medium", "definition": "utm_medium"}, {"key": "campaign", "display": "Campaign", "definition": "utm_campaign"}]}',
+                true
+            ),
+            'settings' => ["color" => ""],
+        ]);
+
+        DomainWhitelist::create([
+            "property_id" => $prop->id,
+            "domain" => $domain,
+        ]);
+
+        WebPropertyUser::create([
+            "property_id" => $prop->id,
+            "user_id" => $user->id,
+            "role" => "admin",
+            "settings" => ["display" => "default"]
+        ]);
+        return $prop;
+    }
 }
