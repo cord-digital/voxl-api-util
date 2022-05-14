@@ -23,4 +23,9 @@ class WebPropertyInvite extends Model
         return $this->belongsTo(WebProperty::class, "property_id");
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, "user_id");
+    }
+
 }
