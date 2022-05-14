@@ -38,7 +38,7 @@ class AuthProperty
         return self::$instance->state_user;
     }
 
-    public static function state_identifier(): User|null {
+    public static function state_identifier(): User|string|null {
         return self::$instance->state_identifier;
     }
 
