@@ -10,10 +10,10 @@ class MarketplaceOrder extends Model
     use HasFactory;
 
     protected $fillable = [
-        'property_id',
+        'marketplace_id',
         'conversion_id',
         'marketplace_number',
-        'marketplace_id',
+        'marketplace_order_id',
         'customer_email',
         'customer_id',
         'customer_first',
@@ -22,8 +22,8 @@ class MarketplaceOrder extends Model
 
     ];
 
-    public function property() {
-        return $this->belongsTo(WebProperty::class, "property_id");
+    public function marketplace() {
+        return $this->belongsTo(Marketplace::class, "marketplace_id");
     }
 
     public function conversion() {

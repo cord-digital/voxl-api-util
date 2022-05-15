@@ -35,7 +35,9 @@ class Conversion extends Model
     }
 
     public function marketplace_order() {
-        return $this->hasOne(MarketplaceOrder::class);
+        return $this->hasOne(MarketplaceOrder::class)->whereHas("marketplace", function ($query) {
+            $query->where('enabled', true);
+        });
     }
 
 }
