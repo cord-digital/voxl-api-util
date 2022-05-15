@@ -56,6 +56,14 @@ class WebProperty extends Model
         return $this->hasMany(WebPropertyInvite::class, "property_id")->where("accepted", false);
     }
 
+    /**
+     * The property's marketplace.
+     */
+    public function marketplace()
+    {
+        return $this->belongsTo(Marketplace::class, "property_id");
+    }
+
     public static function create_property($domain, User $user)
     {
         $prop = WebProperty::create([
