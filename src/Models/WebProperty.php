@@ -11,16 +11,15 @@ class WebProperty extends Model
 
     protected $fillable = [
         'domain',
+        'display_name',
+        'settings'
     ];
 
     protected $casts = [
-        'channel_groupings' => 'array',
         'settings' => 'array',
     ];
 
     protected $attributes = [
-        'channel_groupings' => '{"ordering":["fb_ads","default"],"groupings":{"default":{"display":"Other","key":"default","type":"default","definition":[],"subgroupings":[{"key":"source","display":"Source","definition":"utm_source"},{"key":"medium","display":"Medium","definition":"utm_medium"},{"key":"campaign","display":"Campaign","definition":"utm_campaign"}]},"fb_ads":{"display":"Facebook Ads","key":"fb_ads","type":"integration","definition":[{"key":"vxl_channel","value":"fb_ads"}],"remaps":[{"key":"fbaid","dest":"vxl_ad"}],"subgroupings":[{"key":"campaign","display":"Campaign","definition":"ad.vxl_campaign"},{"key":"set","display":"Ad Set","definition":"ad.vxl_set"},{"key":"ad","display":"Ad","definition":"ad.vxl_ad"}]}}}
-        ',
         'settings' => '{"reporting_timezone":"-7"}',
     ];
 
@@ -73,12 +72,15 @@ class WebProperty extends Model
     }
 
 
-    public static function create_property($domain, User $user)
+    public static function create_property($domain, User $user, $display_name = null)
     {
+        if ($display_name === null)
+            $display_name = $domain;
+
         $prop = WebProperty::create([
             'domain' => $domain,
+            'display_name' => $display_name,
             'settings' => ["reporting_timezone" => "-7"],
-            'channel_groupings' => ["ordering" => []],
         ]);
 
         WebPropertyChannel::create([
