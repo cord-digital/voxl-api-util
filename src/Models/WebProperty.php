@@ -57,12 +57,21 @@ class WebProperty extends Model
     }
 
     /**
-     * The property's marketplace.
+     * The property's marketplaces.
+     */
+    public function marketplaces()
+    {
+        return $this->hasMany(Marketplace::class, "property_id");
+    }
+
+    /**
+     * The property's marketplaces.
      */
     public function marketplace()
     {
-        return $this->belongsTo(Marketplace::class, "property_id");
+        return $this->hasMany(Marketplace::class, "property_id")->where("enabled", true)->first();
     }
+
 
     public static function create_property($domain, User $user)
     {
