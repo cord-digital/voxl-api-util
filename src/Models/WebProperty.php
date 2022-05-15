@@ -68,7 +68,7 @@ class WebProperty extends Model
      */
     public function marketplace()
     {
-        return $this->hasMany(Marketplace::class, "property_id")->where("enabled", true)->first();
+        return $this->hasOne(Marketplace::class, "property_id")->where("enabled", true)->first();
     }
 
 
