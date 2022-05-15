@@ -18,7 +18,8 @@ class Marketplace extends Model
         "reporting_timezone",
         "settings",
         "enabled",
-        "enabled_at"
+        "enabled_at",
+        "unique_id"
     ];
 
     public function property() {
