@@ -29,7 +29,7 @@ class WebProperty extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(User::class, "web_property_user", "property_id", "user_id")->withPivot(["web_property_user.role as property_role", "web_property_user.created_at as property_created_at"]);
+        return $this->belongsToMany(User::class, "web_property_user", "property_id", "user_id")->withPivot(["role as role", "web_property_user.created_at as property_created_at"]);
     }
 
     /**
