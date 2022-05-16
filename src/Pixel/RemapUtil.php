@@ -2,10 +2,10 @@
 
 namespace Voxl\Util\Pixel;
 
-use App\Analytics\AnalyticsTranslator;
 use Voxl\Util\Auth\AuthProperty;
+use Voxl\Util\Models\WebProperty;
 
-class RemapTranslator
+class RemapUtil
 {
     public static function pre_source($params, &$pre_source)
     {
@@ -36,10 +36,11 @@ class RemapTranslator
         return $valid_found;
     }
 
-    public static function apply_remaps(&$pre_source, $params)
+    public static function apply_remaps(&$pre_source, $params, $property_id = null, $remaps = null)
     {
-        $remaps = self::get_remaps_for_property();
-
+        if ($remaps === null) {
+            $remaps = self::get_remaps_for_property($property_id);
+        }
         // {mapping: {key: , destination: }, definition: [ {key:, value:} ]}
         $applied = false;
         foreach ($remaps as $remap) {
@@ -85,9 +86,14 @@ class RemapTranslator
         return $applied;
     }
 
-    public static function get_remaps_for_property()
+    public static function get_remaps_for_property($property_id = null)
     {
-        $property = AuthProperty::property();
+
+        if ($property_id !== null) {
+            $property = WebProperty::whereId($property_id)->first();
+        } else {
+            $property = AuthProperty::property();
+        }
         $remaps = $property->remaps;
         $all_remaps = [];
 
