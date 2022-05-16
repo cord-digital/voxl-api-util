@@ -20,6 +20,9 @@ class PlatformCredentials extends Model
         "name",
         "channel_id",
         'enabled',
+        'enabled_at',
+        'invalidated',
+        'invalidated_at'
     ];
 
     protected $hidden = [
