@@ -11,7 +11,7 @@ class AuthProperty
 {
     protected $property, $property_id;
 
-    protected $state_user, $state_identifier;
+    protected $state_user, $state_identifier, $state_debug;
 
     private static $instance;
 
@@ -26,11 +26,12 @@ class AuthProperty
         return $this->property;
     }
 
-    public function set_property(WebProperty $property, User $state_user = null, string|null $identifier = null) {
+    public function set_property(WebProperty $property, User $state_user = null, string|null $identifier = null, $state_debug = false) {
         $this->property = $property;
         $this->property_id = $property->id;
         $this->state_user = $state_user;
         $this->state_identifier = $identifier;
+        $this->state_debug = $state_debug;
         self::$instance = $this;
     }
 
@@ -40,6 +41,10 @@ class AuthProperty
 
     public static function state_identifier(): User|string|null {
         return self::$instance->state_identifier;
+    }
+
+    public static function state_debug(): User|string|null {
+        return self::$instance->state_debug;
     }
 
     public static function property(): WebProperty|null {
