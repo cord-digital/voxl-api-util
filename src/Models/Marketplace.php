@@ -22,6 +22,10 @@ class Marketplace extends Model
         "unique_id"
     ];
 
+    protected $casts = [
+        "settings" => "array"
+    ];
+
     public function property() {
         return $this->belongsTo(WebProperty::class, "property_id");
     }
