@@ -44,7 +44,7 @@ class WebProperty extends Model
      */
     public function remaps()
     {
-        return $this->hasMany(WebPropertyRemap::class, "property_id");
+        return $this->hasMany(WebPropertyRemap::class, "property_id")->orderBy("order", "ASC")->orderBy("id", "ASC");
     }
 
     /**
